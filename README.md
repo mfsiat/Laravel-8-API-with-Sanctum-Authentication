@@ -81,3 +81,27 @@ api/products/id
 ```
 api/logout
 ```
+### Full API list 
+```
++--------+----------+----------------------------+------+------------------------------------------------------------+------------------------------------------+
+| Domain | Method   | URI                        | Name | Action                                                     | Middleware                               |
++--------+----------+----------------------------+------+------------------------------------------------------------+------------------------------------------+
+|        | GET|HEAD | /                          |      | Closure                                                    | web                                      |
+|        | POST     | api/login                  |      | App\Http\Controllers\AuthController@login                  | api                                      |
+|        | POST     | api/logout                 |      | App\Http\Controllers\AuthController@logout                 | api                                      |
+|        |          |                            |      |                                                            | App\Http\Middleware\Authenticate:sanctum |
+|        | GET|HEAD | api/products               |      | App\Http\Controllers\ProductController@index               | api                                      |
+|        | POST     | api/products               |      | App\Http\Controllers\ProductController@store               | api                                      |
+|        |          |                            |      |                                                            | App\Http\Middleware\Authenticate:sanctum |
+|        | GET|HEAD | api/products/search/{name} |      | App\Http\Controllers\ProductController@search              | api                                      |
+|        | GET|HEAD | api/products/{id}          |      | App\Http\Controllers\ProductController@show                | api                                      |
+|        | PUT      | api/products/{id}          |      | App\Http\Controllers\ProductController@update              | api                                      |
+|        |          |                            |      |                                                            | App\Http\Middleware\Authenticate:sanctum |
+|        | DELETE   | api/products/{id}          |      | App\Http\Controllers\ProductController@destroy             | api                                      |
+|        |          |                            |      |                                                            | App\Http\Middleware\Authenticate:sanctum |
+|        | POST     | api/register               |      | App\Http\Controllers\AuthController@register               | api                                      |
+|        | GET|HEAD | api/user                   |      | Closure                                                    | api                                      |
+|        |          |                            |      |                                                            | App\Http\Middleware\Authenticate:api     |
+|        | GET|HEAD | sanctum/csrf-cookie        |      | Laravel\Sanctum\Http\Controllers\CsrfCookieController@show | web                                      |
++--------+----------+----------------------------+------+------------------------------------------------------------+------------------------------------------+
+```
